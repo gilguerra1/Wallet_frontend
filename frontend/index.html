@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Wallet — Frontend</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Wallet Dashboard</h1>
+        <p>Interface simples para gerenciamento de carteiras — conecta ao backend em <code>http://localhost:8000/api/v1</code></p>
+      </header>
+
+      <main>
+        <section class="panel" id="wallet-creation">
+          <h2>1. Criar carteira</h2>
+          <p>Gera uma nova carteira (endereço + private key).</p>
+          <button id="btn-create-wallet">Criar carteira</button>
+          <div id="create-result" class="result"></div>
+        </section>
+
+        <section class="panel" id="wallet-actions">
+          <h2>2. Acessar carteira</h2>
+
+          <label for="wallet-address">Endereço da carteira</label>
+          <input id="wallet-address" placeholder="Cole ou insira o endereço da carteira" />
+          <label for="wallet-private-key">Chave privada (apenas para ações).</label>
+          <input id="wallet-private-key" placeholder="private key" />
+
+          <div class="row">
+            <button id="btn-get-wallet">Buscar informações</button>
+            <button id="btn-get-balances">Ver saldos</button>
+          </div>
+
+          <div id="wallet-info" class="result"></div>
+          <div id="balances-info" class="result"></div>
+        </section>
+
+        <section class="panel" id="tx-actions">
+          <h2>3. Depósitos / Saques</h2>
+          <div class="row">
+            <div class="col">
+              <h3>Depósito</h3>
+              <select id="deposit-currency"></select>
+              <input id="deposit-value" placeholder="Valor" />
+              <button id="btn-deposit">Depositar</button>
+              <div id="deposit-result" class="result"></div>
+            </div>
+
+            <div class="col">
+              <h3>Saques</h3>
+              <select id="withdraw-currency"></select>
+              <input id="withdraw-value" placeholder="Valor" />
+              <button id="btn-withdraw">Sacar</button>
+              <div id="withdraw-result" class="result"></div>
+            </div>
+          </div>
+
+          <h2>4. Transferência</h2>
+          <input id="transfer-target" placeholder="Carteira destino" />
+          <select id="transfer-currency"></select>
+          <input id="transfer-value" placeholder="Valor" />
+          <button id="btn-transfer">Transferir</button>
+          <div id="transfer-result" class="result"></div>
+
+          <h2>5. Conversão</h2>
+          <div class="row">
+            <select id="convert-source"></select>
+            <select id="convert-target"></select>
+            <input id="convert-value" placeholder="Valor origem" />
+            <button id="btn-convert">Converter</button>
+            <div id="convert-result" class="result"></div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer>
+        <small>Feito com ❤️ — Frontend leve para desenvolvimento local</small>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
