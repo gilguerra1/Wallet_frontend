@@ -68,3 +68,56 @@ Use esses IDs ao criar depósitos/saques, transferências e conversões.
 ---
 
 Se quiser, posso adicionar um pequeno servidor estático integrado ao backend (uma rota que sirva os arquivos estáticos) ou configurar CORS automaticamente. Quer que eu faça isso?
+
+## Executando com Docker / Docker Compose ✅
+
+Você pode construir uma imagem Docker que serve esta SPA usando nginx e iniciar com Docker ou Docker Compose.
+
+1) Usando Docker (build + run):
+
+```powershell
+# navegue até a pasta do frontend (ex.: frontend)
+cd frontend
+
+# buildar a imagem
+docker build -t wallet-frontend:latest .
+
+# rodar a imagem (mapear porta 8080 -> 80 do container)
+docker run --rm -p 8080:80 wallet-frontend:latest
+```
+
+Depois abra no navegador: http://localhost:8080
+
+
+2) Usando Docker Compose (recomendado para desenvolvimento local):
+
+Existe um único `docker-compose.yml` na raiz do repositório que sobe o banco, o backend e o frontend.
+
+Para subir todo o stack (db + backend + frontend) a partir da raiz do repositório:
+
+```powershell
+docker compose up --build -d
+```
+
+Se você deseja subir apenas o frontend (sem backend/db), também é possível com o mesmo arquivo:
+
+```powershell
+docker compose up --build -d frontend
+```
+
+Ver logs:
+
+```powershell
+docker compose logs -f
+```
+
+Parar e remover:
+
+```powershell
+docker compose down
+```
+
+Observações:
+- O container serve os arquivos estáticos em `/` por meio do nginx (porta 80 interna do container).
+- Se o backend estiver em `http://localhost:8000`, verifique CORS se as requisições falharem — o backend deve aceitar requests do host/porta onde o frontend estará sendo servido (`http://localhost:8080`).
+
