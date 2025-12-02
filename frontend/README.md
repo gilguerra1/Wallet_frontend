@@ -89,17 +89,18 @@ docker run --rm -p 8080:80 wallet-frontend:latest
 Depois abra no navegador: http://localhost:8080
 
 
+
 2) Usando Docker Compose (recomendado para desenvolvimento local):
 
-Existe um único `docker-compose.yml` na raiz do repositório que sobe o banco, o backend e o frontend.
+Na raiz do repositório há um `docker-compose.yml` preparado para subir o frontend. Use os comandos abaixo para testar rapidamente.
 
-Para subir todo o stack (db + backend + frontend) a partir da raiz do repositório:
+Subir apenas o frontend:
 
 ```powershell
 docker compose up --build -d
 ```
 
-Se você deseja subir apenas o frontend (sem backend/db), também é possível com o mesmo arquivo:
+Ou subir explicitamente o serviço frontend (caso queira):
 
 ```powershell
 docker compose up --build -d frontend
